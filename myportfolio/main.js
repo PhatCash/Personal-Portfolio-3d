@@ -36,9 +36,10 @@ scene.add(torus);
 // 0x is a hexadecimal literal
 const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(20, 20, 20);
+scene.add(pointLight);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(pointLight, ambientLight);
+scene.add(ambientLight);
 
 const lightHelper = new THREE.PointLightHelper(pointLight);
 const gridHelper = new THREE.GridHelper(200, 50);
@@ -58,7 +59,24 @@ function addStar() {
   scene.add(star);
 }
 
-Array(250).fill().forEach(addStar);
+Array(300).fill().forEach(addStar);
+
+// Background - we can use a texture and images
+const loader = new THREE.TextureLoader();
+loader.load(
+  "space.jpg",
+  function (texture) {
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.generateMipmaps = false;
+    scene.background = texture;
+  },
+  undefined,
+  function (err) {
+    console.error("An error occurred loading the texture", err);
+  }
+);
+
 // Use a recursive function that gives a infinite loop that calls the render function automatically
 // first line just tells the browser that we want to perform an animation
 function animate() {
