@@ -9,6 +9,7 @@ canvas {
 :root {
   --dark-bg: rgba(15, 15, 15, 0.95);
   --spacing: 350px;
+  --violetred: #a2106d;
   font-family: brandon-grotesque, sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -75,4 +76,18 @@ blockquote p {
 
 .left {
   grid-column: 6 / 12;
+}
+
+.manifesto::first-line {
+  font-weight: bold;
+}
+
+.grn-btn {
+  padding: 0.5em;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.grn-btn:hover {
+  background-color: var(--violetred);
 }
